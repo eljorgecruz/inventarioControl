@@ -12,6 +12,21 @@ export default class Inventario{
         console.log(this.lista);
     }
 
+    ordenar() {
+        if (this.lista.length != 0) {
+            let aux = 0;
+            for (let i = 0; i < this.lista.length - 1; i++)
+                for (let j = 0; j < this.lista.length - i - 1; j++)
+                    if (this.lista[j + 1].codigo < this.lista[j].codigo) {
+                        aux = this.lista[j + 1];
+                        this.lista[j + 1] = this.lista[j];
+                        this.lista[j] = aux;
+                    }
+        }else {
+            return null;
+        }
+    }
+
     eliminar(codigo){
         let position = this.indice(codigo);
         if(position < this.lista.length + 1){
