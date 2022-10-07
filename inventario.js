@@ -52,11 +52,20 @@ export default class Inventario{
     }
 
     busqueda(codigo){
-        for (let i = 0; i < this.lista.length; i++){
-            if(codigo == this.lista[i].codigo){
-                return this.lista[i];  
-            } 
+        let inicio = 0;
+        let fin = this.lista.length - 1;
+        let mitad = Math.floor((inicio + fin) / 2);
+        let resultado = null;
+        while (inicio <= fin) {
+            if (this.lista[mitad].codigo === codigo) {
+                resultado = this.lista[mitad];
+                break;
+            } else if (this.lista[mitad].codigo < codigo) {
+                inicio = mitad + 1;
+            } else
+                fin = mitad - 1;
+            mitad = Math.floor((inicio + fin) / 2);
         }
-        return null; 
+        return resultado;
     }
 }
